@@ -1,0 +1,66 @@
+public class FactoryMethodPattern {
+
+    // Document Interface
+    interface Document {
+        void open();
+    }
+
+    // Concrete Documents
+    static class WordDocument implements Document {
+        public void open() {
+            System.out.println("Opening Word Document");
+        }
+    }
+
+    static class PdfDocument implements Document {
+        public void open() {
+            System.out.println("Opening PDF Document");
+        }
+    }
+
+    static class ExcelDocument implements Document {
+        public void open() {
+            System.out.println("Opening Excel Document");
+        }
+    }
+
+    // Abstract Factory
+    static abstract class DocumentFactory {
+        abstract Document createDocument();
+    }
+
+    // Concrete Factories
+    static class WordFactory extends DocumentFactory {
+        public Document createDocument() {
+            return new WordDocument();
+        }
+    }
+
+    static class PdfFactory extends DocumentFactory {
+        public Document createDocument() {
+            return new PdfDocument();
+        }
+    }
+
+    static class ExcelFactory extends DocumentFactory {
+        public Document createDocument() {
+            return new ExcelDocument();
+        }
+    }
+
+    // Main Method
+    public static void main(String[] args) {
+
+        DocumentFactory wordFactory = new WordFactory();
+        Document word = wordFactory.createDocument();
+        word.open();
+
+        DocumentFactory pdfFactory = new PdfFactory();
+        Document pdf = pdfFactory.createDocument();
+        pdf.open();
+
+        DocumentFactory excelFactory = new ExcelFactory();
+        Document excel = excelFactory.createDocument();
+        excel.open();
+    }
+}
